@@ -11,7 +11,11 @@ Please feel to reach out in the **pimp my code** teams channel in the Build team
 Create an API that can translate commands to the rover. The rover will execute these commands by moving around in a grid. The rover should return its position when it's finished executing its commands.
 
 ## Non functional requirements
-- Focus of this kata is the 4 rules of simple design: https://martinfowler.com/bliki/BeckDesignRules.html
+- Focus of this kata is the 4 rules of simple design. Your code should, in order: (https://martinfowler.com/bliki/BeckDesignRules.html)
+  - Pass the tests
+  - Reveal intention
+  - Have no duplication
+  - Be as as small as possible. 
 - This means ofcourse that your solution should be covered by tests.
  
 ## Starting Requirements
