@@ -3,6 +3,8 @@
 In this first Kata we're gonna build a Mars rover (http://kata-log.rocks/mars-rover-kata). 
 Together with your solution, I'd like to ask you to ad a brief Readme.
 How did you tackle the solution? Imporant design decisions? Did you run into issues? How did you solve them?
+This is no solitary mission! 
+Please feel to reach out in the **pimp my code** teams channel in the Build teams if you have any questions!
  
 ## Your Task
  
