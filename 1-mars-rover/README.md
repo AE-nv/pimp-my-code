@@ -1,8 +1,8 @@
 # The mars rover kata
 
 In this first Kata we're gonna build a Mars rover (http://kata-log.rocks/mars-rover-kata). 
-Together with your solution, I'd like to ask you to ad a brief Readme.
-How did you tackle the solution? Imporant design decisions? Did you run into issues? How did you solve them?
+Together with your solution, I'd like to ask you to add a brief README.
+How did you tackle the solution? Important design decisions? Did you run into issues? How did you solve them?
 This is no solitary mission! 
 Please feel to reach out in the **pimp my code** teams channel in the Build teams if you have any questions!
  
@@ -16,7 +16,7 @@ Create an API that can translate commands to the rover. The rover will execute t
   - Reveal intention
   - Have no duplication
   - Be as as small as possible. 
-- This means ofcourse that your solution should be covered by tests.
+- This means of course that your solution should be covered by tests.
  
 ## Starting Requirements
 - The grid on which the rover moves is 5x5 in size.
