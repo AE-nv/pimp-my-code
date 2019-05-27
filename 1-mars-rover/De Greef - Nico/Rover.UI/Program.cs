@@ -10,7 +10,10 @@ namespace Rover.ClientApp
         {
             // No obstacles scenario
             Console.WriteLine("*** No obstacles ***");
-            new RoverControl().Navigate(new Planet(5, 5), 1, 2, 'E', "FLFLBLFFRFRBBLF".ToCharArray(),
+            new RoverControl().Navigate(
+                new Planet(5, 5),
+                1, 2, 'E',
+                "FLFLBLFFRFRBBLF".ToCharArray(),
                 (int X, int Y, char direction) => Console.WriteLine("{0}-{1}-{2}", X, Y, direction), // final location
                 (string location) => Console.WriteLine(location) // intermediate locations
             );
@@ -24,7 +27,10 @@ namespace Rover.ClientApp
                 .Block(2, 0)
                 .Block(0, 3)
                 .Block(4, 3);
-            new RoverControl().Navigate(planet, 1, 2, 'E', "FLFLBLFFRFRBBLF".ToCharArray(),
+            new RoverControl().Navigate(
+                planet,
+                1, 2, 'E',
+                "FLFLBLFFRFRBBLF".ToCharArray(),
                 (int X, int Y, char direction) => Console.WriteLine("{0}-{1}-{2}", X, Y, direction), // final location
                 (string location) => Console.WriteLine(location) // intermediate locations
             );
