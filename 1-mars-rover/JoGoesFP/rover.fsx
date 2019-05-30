@@ -71,7 +71,7 @@ let run dimensions startingPosition commands obstacles =
     let folder position command = position |> Result.bind (executeCommand dimensions obstacles command)
     commands |> Seq.fold folder (Ok startingPosition)
 
-#r @".paket\packages\Unquote\lib\net45\Unquote.dll"
+#r @".\packages\Unquote\lib\net45\Unquote.dll"
 open Swensen.Unquote
 printf "Testing..."
 //Example scenario: wrapping grid, no obstacles
