@@ -14,7 +14,7 @@ namespace Rover.ClientApp
                 new Planet(5, 5),
                 1, 2, 'E',
                 "FLFLBLFFRFRBBLF".ToCharArray(),
-                (int X, int Y, char direction) => Console.WriteLine("{0}-{1}-{2}", X, Y, direction), // final location
+                (int X, int Y, char direction) => Console.WriteLine($"{X}-{Y}-{direction}"), // final location
                 (string location) => Console.WriteLine(location) // intermediate locations
             );
             Console.ReadLine();
@@ -31,7 +31,7 @@ namespace Rover.ClientApp
                 planet,
                 1, 2, 'E',
                 "FLFLBLFFRFRBBLF".ToCharArray(),
-                (int X, int Y, char direction) => Console.WriteLine("{0}-{1}-{2}", X, Y, direction), // final location
+                (int X, int Y, char direction) => Console.WriteLine( $"{X}-{Y}-{direction}"), // final location
                 (string location) => Console.WriteLine(location) // intermediate locations
             );
 

@@ -18,8 +18,8 @@ namespace Rover.Domain
         // Discussable if throwing exceptions in a ctor is a bad practice
         public Planet(int xSectors, int ySectors)
         {
-            if (xSectors < 1) throw new ArgumentOutOfRangeException("xSectors", "xSectors must be at least 1");
-            if (ySectors < 1) throw new ArgumentOutOfRangeException("ySectors", "ySectors must be at least 1");
+            if (xSectors < 1) throw new ArgumentOutOfRangeException(nameof(xSectors), "must be at least 1");
+            if (ySectors < 1) throw new ArgumentOutOfRangeException(nameof(ySectors), "must be at least 1");
 
             for (int x = 0; x < xSectors; x++)
             {

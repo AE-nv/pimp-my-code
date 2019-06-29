@@ -28,8 +28,8 @@ namespace Rover.Api
                 // Catches the case where the starting location does not exist on the grid
                 throw new ApplicationException("Invalid starting location", ex);
             }
-            if (!_compass.Contains(direction)) throw new ArgumentOutOfRangeException("direction", "Invalid direction");
-            if (movements.Count((m) => !"FBLR".Contains(m)) > 0) throw new ArgumentOutOfRangeException("movements", "Invalid movements specified, only F, B, L and R are allowed");
+            if (!_compass.Contains(direction)) throw new ArgumentOutOfRangeException(nameof(direction), "Invalid direction");
+            if (movements.Count((m) => !"FBLR".Contains(m)) > 0) throw new ArgumentOutOfRangeException(nameof(movements), "Invalid movements specified, only F, B, L and R are allowed");
             _currentX = startX;
             _currentY = startY;
             _currentDirection = direction;
@@ -43,7 +43,7 @@ namespace Rover.Api
                     moved?.Invoke("Blocked");
                     break;
                 }
-                moved?.Invoke(string.Format("{0}-{1}-{2}", _currentX, _currentY, _currentDirection));
+                moved?.Invoke(string.Format($"{_currentX}-{_currentY}-{_currentDirection}"));
             }
 
             // Callback final endpoint
