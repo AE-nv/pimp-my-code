@@ -1,0 +1,5 @@
+NUGET
+  remote: https://www.nuget.org/api/v2
+    FSharp.Core (4.6.2) - restriction: >= netstandard2.0
+    Unquote (4.0)
+      FSharp.Core (>= 4.2.3) - restriction: >= netstandard2.0
