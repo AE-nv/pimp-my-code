@@ -1,3 +1,6 @@
+#Mac mumbojumbo
+*.DS_Store
+
 .idea/*
 
 .classpath
