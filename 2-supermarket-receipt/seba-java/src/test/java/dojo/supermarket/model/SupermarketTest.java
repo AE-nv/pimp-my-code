@@ -1,7 +1,6 @@
 package dojo.supermarket.model;
 
 import java.util.Collections;
-import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
@@ -137,7 +136,7 @@ public class SupermarketTest {
         cart.addItem(rice);
 
         Teller teller = new Teller(catalog);
-        teller.addSpecialOffer(SpecialOfferType.TenPercentDiscount, rice, 10.0);
+        teller.addSpecialOffer(SpecialOfferType.PercentDiscount, rice, 10.0);
 
         Receipt receipt = teller.checksOutArticlesFrom(cart);
 
@@ -158,7 +157,7 @@ public class SupermarketTest {
         cart.addItemQuantity(apples, 2.5);
 
         Teller teller = new Teller(catalog);
-        teller.addSpecialOffer(SpecialOfferType.TenPercentDiscount, apples, 20.0);
+        teller.addSpecialOffer(SpecialOfferType.PercentDiscount, apples, 20.0);
 
         Receipt receipt = teller.checksOutArticlesFrom(cart);
 
