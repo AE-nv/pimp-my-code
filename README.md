@@ -9,7 +9,7 @@ Interested? JOIN 'PIMP MY CODE' channel on the AE-BUILD teams.
 Peace out, XZibit
 
 # Format
-Whenever I post a question / piece of code / design question, you can solve this at your won pace at home. 
+Whenever I post a question / piece of code / design question, you can solve this at your own pace at home. 
 For each new edition I will create a folder on this repository. If you want to submit your solution (and some comments in the readme), you create a subfoler named *lastname-firstname*.
   
   
