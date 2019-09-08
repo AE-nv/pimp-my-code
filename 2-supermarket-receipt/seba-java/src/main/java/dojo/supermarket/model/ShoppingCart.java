@@ -57,9 +57,9 @@ public class ShoppingCart {
                 case PercentDiscount:
                     return getPercentDiscount(p, quantity, offer, unitPrice);
                 case TwoForAmount:
-                    return getTwoForAmountDiscount(p, quantity, offer, unitPrice, quantityAsInt);
+                    return getTwoForAmountDiscount(p, quantity, offer, unitPrice);
                 case FiveForAmount:
-                    return getFiveForAmountDiscount(p, quantity, offer, unitPrice, quantityAsInt);
+                    return getFiveForAmountDiscount(p, quantity, offer, unitPrice);
                 default:
                     return null;
             }
@@ -77,24 +77,24 @@ public class ShoppingCart {
     }
 
     private Discount getPercentDiscount(Product p, double quantity, Offer offer, double unitPrice) {
-        Discount discount;
-        discount = new Discount(p, offer.argument + "% off", quantity * unitPrice * offer.argument / 100.0);
-        return discount;
+        double priceDiscounted = quantity * unitPrice * offer.argument / 100.0;
+        return new Discount(p, offer.argument + "% off", priceDiscounted);
     }
 
-    private Discount getFiveForAmountDiscount(Product p, double quantity, Offer offer, double unitPrice, int quantityAsInt) {
-        if (quantityAsInt >= 5) {
-            double discountTotal = unitPrice * quantity - (offer.argument * (quantityAsInt / 5) + quantityAsInt % 5 * unitPrice);
-            return new Discount(p, 5 + " for " + offer.argument, discountTotal);
-        }
-        return null;
+    private Discount getTwoForAmountDiscount(Product p, double quantity, Offer offer, double unitPrice) {
+        return getXForAmountDiscount(p, quantity, offer, unitPrice, 2);
     }
 
-    private Discount getTwoForAmountDiscount(Product p, double quantity, Offer offer, double unitPrice, int quantityAsInt) {
-        if (quantityAsInt >= 2) {
-            double total = offer.argument * (quantityAsInt / 2) + quantityAsInt % 2 * unitPrice;
-            double discountN = unitPrice * quantity - total;
-            return new Discount(p, "2 for " + offer.argument, discountN);
+    private Discount getFiveForAmountDiscount(Product p, double quantity, Offer offer, double unitPrice) {
+        return getXForAmountDiscount(p, quantity, offer, unitPrice, 5);
+    }
+
+    private Discount getXForAmountDiscount(Product p, double quantity, Offer offer, double unitPrice, int amount) {
+        if (quantity >= amount) {
+            double amountOfTimesDiscountIsApplied = Math.floor(quantity/amount);
+            double priceDiscounted =
+                amountOfTimesDiscountIsApplied * amount * unitPrice - amountOfTimesDiscountIsApplied * offer.argument;
+            return new Discount(p, amount + " for " + offer.argument, priceDiscounted);
         }
         return null;
     }
