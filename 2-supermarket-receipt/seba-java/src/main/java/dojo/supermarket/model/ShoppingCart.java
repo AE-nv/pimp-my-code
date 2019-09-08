@@ -53,7 +53,7 @@ public class ShoppingCart {
 
             switch (offer.offerType) {
                 case ThreeForTwo:
-                    return getThreeForTwoDiscount(p, quantity, unitPrice, quantityAsInt);
+                    return getThreeForTwoDiscount(p, quantity, unitPrice);
                 case PercentDiscount:
                     return getPercentDiscount(p, quantity, offer, unitPrice);
                 case TwoForAmount:
@@ -67,7 +67,7 @@ public class ShoppingCart {
         return null;
     }
 
-    private Discount getThreeForTwoDiscount(Product p, double quantity, double unitPrice, int quantityAsInt) {
+    private Discount getThreeForTwoDiscount(Product p, double quantity, double unitPrice) {
         if (quantity >= 3.0) {
             double amountOfTimesDiscountIsApplied = Math.floor(quantity/3);
             double priceDiscounted = amountOfTimesDiscountIsApplied * unitPrice;
