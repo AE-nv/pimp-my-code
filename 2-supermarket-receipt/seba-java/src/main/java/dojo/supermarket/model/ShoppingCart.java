@@ -49,8 +49,6 @@ public class ShoppingCart {
             double quantity = productQuantities.get(p);
             double unitPrice = catalog.getUnitPrice(p);
 
-            int quantityAsInt = (int) quantity;
-
             switch (offer.offerType) {
                 case ThreeForTwo:
                     return getThreeForTwoDiscount(p, quantity, unitPrice);
