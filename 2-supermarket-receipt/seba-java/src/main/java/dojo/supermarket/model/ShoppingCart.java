@@ -38,23 +38,22 @@ public class ShoppingCart {
 
     void handleOffers(Receipt receipt, Map<Product, Offer> offers, SupermarketCatalog catalog) {
         for (Product product : productQuantities().keySet()) {
-            Discount discount = getDiscountForProduct(product, offers, catalog);
-
-            if (discount != null) {
+            if (productIsDiscounted(offers, product)) {
+                Discount discount = getDiscountForProduct(product, offers, catalog);
                 receipt.addDiscount(discount);
             }
         }
     }
 
-    private Discount getDiscountForProduct(Product product, Map<Product, Offer> offers, SupermarketCatalog catalog) {
-        if (offers.containsKey(product)) {
-            Offer offer = offers.get(product);
-            double quantity = productQuantities.get(product);
-            double unitPrice = catalog.getUnitPrice(product);
+    private boolean productIsDiscounted(Map<Product, Offer> offers, Product product) {
+        return offers.containsKey(product);
+    }
 
-            return offer.getOfferType().getDiscounter().applyDiscount(product, quantity, offer, unitPrice);
-        }
-        return null;
+    private Discount getDiscountForProduct(Product product, Map<Product, Offer> offers, SupermarketCatalog catalog) {
+        Offer offer = offers.get(product);
+        double quantity = productQuantities.get(product);
+        double unitPrice = catalog.getUnitPrice(product);
+        return offer.apply(quantity, unitPrice);
     }
 
 }

@@ -18,7 +18,7 @@ public enum SpecialOfferType {
         this.offerTypeDiscounter = discounter;
     }
 
-    public Discounter getDiscounter() {
-        return this.offerTypeDiscounter;
+    public Discount getDiscount(Product product, double quantity, Offer offer, double unitPrice) {
+        return offerTypeDiscounter.applyDiscount(product, quantity, offer, unitPrice);
     }
 }

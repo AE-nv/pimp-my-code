@@ -19,8 +19,8 @@ public class Offer {
         return this.argument;
     }
 
-    public SpecialOfferType getOfferType() {
-        return this.offerType;
+    public Discount apply(double quantity, double unitPrice) {
+        return this.offerType.getDiscount(product, quantity, this,  unitPrice);
     }
 
 }
