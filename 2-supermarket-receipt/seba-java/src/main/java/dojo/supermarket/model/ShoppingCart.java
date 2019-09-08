@@ -67,19 +67,19 @@ public class ShoppingCart {
         return null;
     }
 
+    private Discount getThreeForTwoDiscount(Product p, double quantity, double unitPrice, int quantityAsInt) {
+        if (quantity >= 3.0) {
+            double amountOfTimesDiscountIsApplied = Math.floor(quantity/3);
+            double priceDiscounted = amountOfTimesDiscountIsApplied * unitPrice;
+            return new Discount(p, "3 for 2", priceDiscounted);
+        }
+        return null;
+    }
+
     private Discount getPercentDiscount(Product p, double quantity, Offer offer, double unitPrice) {
         Discount discount;
         discount = new Discount(p, offer.argument + "% off", quantity * unitPrice * offer.argument / 100.0);
         return discount;
-    }
-
-    private Discount getThreeForTwoDiscount(Product p, double quantity, double unitPrice, int quantityAsInt) {
-        if (quantityAsInt > 2) {
-            double discountAmount =
-                quantity * unitPrice - (((quantityAsInt / 2) * 2 * unitPrice) + quantityAsInt % 3 * unitPrice);
-            return new Discount(p, "3 for 2", discountAmount);
-        }
-        return null;
     }
 
     private Discount getFiveForAmountDiscount(Product p, double quantity, Offer offer, double unitPrice, int quantityAsInt) {
