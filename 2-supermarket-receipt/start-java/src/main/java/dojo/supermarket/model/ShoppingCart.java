@@ -43,14 +43,13 @@ public class ShoppingCart {
 
 	private Optional<Discount> calculateDiscount(SupermarketCatalog catalog, Product p, double quantity, Offer offer) {
 		double unitPrice = catalog.getUnitPrice(p);
-		int quantityAsInt = (int) quantity;
 
 		if (offer.offerType == SpecialOfferType.TwoForAmount) {
-			return calculateTwoForAmountDiscount(p, quantity, offer, unitPrice, quantityAsInt);
+			return calculateTwoForAmountDiscount(p, quantity, offer, unitPrice);
 
 		}
 		if (offer.offerType == SpecialOfferType.ThreeForTwo) {
-			return calculateThreeForTwoDiscount(p, quantity, unitPrice, quantityAsInt);
+			return calculateThreeForTwoDiscount(p, quantity, unitPrice);
 		}
 
 		if (offer.offerType == SpecialOfferType.TenPercentDiscount) {
@@ -58,7 +57,7 @@ public class ShoppingCart {
 		}
 
 		if (offer.offerType == SpecialOfferType.FiveForAmount) {
-			return calculateFiveForAmountDiscount(p, quantity, offer, unitPrice, quantityAsInt);
+			return calculateFiveForAmountDiscount(p, quantity, offer, unitPrice);
 		}
 
 		return Optional.empty();
@@ -68,33 +67,35 @@ public class ShoppingCart {
 		return Optional.of(new Discount(p, offer.argument + "% off", quantity * unitPrice * offer.argument / 100.0));
 	}
 
-	private Optional<Discount> calculateTwoForAmountDiscount(Product p, double quantity, Offer offer, double unitPrice
-			, int quantityAsInt) {
-		if (quantityAsInt >= 2) {
-			double totalWithDiscountApplied = offer.argument * (quantityAsInt / 2) + quantityAsInt % 2 * unitPrice;
+	private Optional<Discount> calculateTwoForAmountDiscount(Product p, double quantity, Offer offer,
+	                                                         double unitPrice) {
+		if (quantity >= 2) {
+			double totalWithDiscountApplied =
+					offer.argument * (timesPromoApplicable(quantity, 2)) + (int) quantity % 2 * unitPrice;
 			double discountAmount = unitPrice * quantity - totalWithDiscountApplied;
 			return Optional.of(new Discount(p, "2 for " + offer.argument, discountAmount));
 		}
 		return Optional.empty();
 	}
 
-	private Optional<Discount> calculateThreeForTwoDiscount(Product p, double quantity, double unitPrice,
-	                                                        int quantityAsInt) {
-		if (quantityAsInt > 2) {
+	private Optional<Discount> calculateThreeForTwoDiscount(Product p, double quantity, double unitPrice) {
+		if (quantity > 2) {
 			double discountAmount =
-					quantity * unitPrice - (((quantityAsInt / 3) * 2 * unitPrice) + quantityAsInt % 3 * unitPrice);
+					quantity * unitPrice - ((timesPromoApplicable(quantity, 3) * 2 * unitPrice) + (int) quantity % 3 * unitPrice);
 			return Optional.of(new Discount(p, "3 for 2", discountAmount));
 		}
 		return Optional.empty();
 	}
 
+	private long timesPromoApplicable(double quantity, int promoBundleSize) {
+		return (long) Math.floor(quantity / promoBundleSize);
+	}
+
 	private Optional<Discount> calculateFiveForAmountDiscount(Product p, double quantity, Offer offer,
-	                                                          double unitPrice,
-	                                                          int quantityAsInt) {
-		if (quantityAsInt >= 5) {
-			double discountTotal =
-					unitPrice * quantity - (offer.argument * (quantityAsInt / 5) + quantityAsInt % 5 * unitPrice);
-			return Optional.of(new Discount(p, "5 for " + offer.argument, discountTotal));
+	                                                          double unitPrice) {
+		if (quantity >= 5) {
+			double realDiscountTotal = (unitPrice * 5 - offer.argument) * timesPromoApplicable(quantity, 5);
+			return Optional.of(new Discount(p, "5 for " + offer.argument, realDiscountTotal));
 		}
 		return Optional.empty();
 	}
